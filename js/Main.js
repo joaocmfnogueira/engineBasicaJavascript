@@ -13,7 +13,6 @@ cena1.adicionar(en1);
 cena1.iniciar();
 
 document.addEventListener("keydown", (e) => {
-
 switch (e.key) {
     case "s":
         cena1.iniciar();   
