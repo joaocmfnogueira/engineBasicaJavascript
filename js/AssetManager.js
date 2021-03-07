@@ -36,6 +36,7 @@ export default class AssetManager{
 
    audio(chave){
     return this.audios.get(chave);
+
      }
   
    progresso(){
