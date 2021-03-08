@@ -11,10 +11,14 @@ export default class Cena{
     this.dt = 0;
     this.idAnim = null;
     this.assets = assets;
+    this.mapa = null;
      }
     desenhar() {
-    this.ctx.fillStyle = "grey";
-    this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
+    this.ctx.fillStyle = "lightblue";
+    this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height); 
+
+    this.mapa?.desenhar(this.ctx);
+
     if(this.assets.acabou()){
     for (let s = 0; s < this.sprites.length; s++) {
         const sprite = this.sprites[s];
@@ -84,6 +88,10 @@ export default class Cena{
             }
           }
           this.aRemover = [];
+        }
+        configuraMapa(mapa){
+         this.mapa = mapa;
+         this.mapa.cena = this;
         }
       }
 
