@@ -7,8 +7,7 @@ constructor(linhas = 8, colunas = 12, tamanho = 32){
     for (let l = 0; l < this.LINHAS; l++) {
         this.tiles[l] = [];
         for (let c = 0; c < this.COLUNAS; c++) {
-           this.tiles[l][c] = 0;
-            
+           this.tiles[l][c] = 0;   
        } 
      }
      this.cena = null;
@@ -32,6 +31,18 @@ constructor(linhas = 8, colunas = 12, tamanho = 32){
             ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
          }       
        }
+     }
+   }
+   carregaMapa(modelo){
+       this.LINHAS = modelo.length;
+       this.COLUNAS = modelo[0]?.length ?? 0;
+
+    this.tile = [];
+    for (let l = 0; l < this.LINHAS; l++) {
+        this.tiles[l] = [];
+        for (let c = 0; c < this.COLUNAS; c++) {
+           this.tiles[l][c] = modelo[l][c];   
+       } 
      }
    }
  }
