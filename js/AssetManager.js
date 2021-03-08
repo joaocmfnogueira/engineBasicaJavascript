@@ -13,19 +13,18 @@ export default class AssetManager{
      console.log(`Imagem ${that.carregadas}/${that.aCarregar} carregada!`);
      that.carregadas++;
     });
-    img1.src=source;
+    img1.src = source;
     this.imagens.set(chave , img1);
     this.aCarregar++;
    }
 
    carregaAudio(chave, source){
     const audio = new Audio();
-    const that = this;
-    audio.addEventListener("loadeddata", ()=> {
-     console.log(`Audio ${that.carregadas}/${that.aCarregar} carregada!`);
-     that.carregadas++;
+    audio.addEventListener("loadeddata", () => {
+     console.log(`Audio ${this.carregadas}/${this.aCarregar} carregada!`);
+     this.carregadas++;
     });
-    audio.src=source;
+    audio.src = source;
     this.audios.set(chave , audio);
     this.aCarregar++;
    }
