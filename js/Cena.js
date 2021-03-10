@@ -44,7 +44,7 @@ export default class Cena{
         this.spawn -= dt;
         if(this.spawn<=0){
         this.quandoSpawn();
-        this.spawn = 4;  
+        this.spawn = 1;  
         }
       }
      }
@@ -86,7 +86,7 @@ export default class Cena{
        quandoSpawn()
        {
 
-         
+
        }
        quandoColidir(a,b){
           if(!this.aRemover.includes(a)){
@@ -95,7 +95,6 @@ export default class Cena{
           if(!this.aRemover.includes(b)){
             this.aRemover.push(b);
           }         
-         this.assets.carregaAudio("moeda","assets/coin.wav");
          this.assets.play("moeda");
         }
         removerSprites(){

@@ -25,44 +25,19 @@ const mapa1 = new Mapa(20, 21, 32);
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
 cena1.quandoSpawn = function() {
-     
-     const c2 = 400 + Math.floor(228*Math.random());
-     const c1 = 44 + Math.floor(9*32*Math.random());
-     const c22 = 400 + Math.floor(228*Math.random());
-     const c11 = 44 + Math.floor(9*32*Math.random());
-     const cs = 1 - Math.floor(2*Math.random());
-     const css = 1 - Math.floor(2*Math.random());
-     
-     let  a = 0;
-     if(cs<=0)
+     let ny = Math.floor(this.mapa.LINHAS*Math.random());
+     let nx = Math.floor(this.mapa.COLUNAS*Math.random());
+     while(this.mapa.tiles[ny][nx]!=0)
      {
-          a = c1;
-          
+          ny = Math.floor(this.mapa.LINHAS*Math.random());
+          nx = Math.floor(this.mapa.COLUNAS*Math.random());
      }
-     else{
-          a = c2;
-     }
-     let aa = 0;
-     if(css<=0)
-     {
-          aa = c11;
-          
-     }
-     else{
-          aa = c22;
-     }
-     
-     const b = 44 + Math.floor(17*32*Math.random());
-     a = 200;
-     aa = 300;
-     const pc = new Sprite({vx: Math.floor(8*5*Math.random()) - 20 ,vy: Math.floor(8*5*Math.random()) - 20,x: a ,y: b ,vx: 0, color: "white"});
-     const en1 = new Sprite({vx: Math.floor(8*5*Math.random()) - 20,vy: Math.floor(8*5*Math.random()) - 20,x: aa,y: b, color:"red"});
-     
-     this.adicionar(pc);
+     const nvx = Math.floor(80*Math.random()) - 40;
+     const nvy = Math.floor(80*Math.random()) - 40;
+
+     const en1 = new Sprite({vx: nvx,vy: nvy,x: nx*this.mapa.SIZE + this.mapa.SIZE/2,y: ny*this.mapa.SIZE + this.mapa.SIZE/2, color:"red"});
      this.adicionar(en1);
-     pc.passo(0);
      en1.passo(0);
-     console.log(pc,en1);
 }
 cena1.iniciar();
 
