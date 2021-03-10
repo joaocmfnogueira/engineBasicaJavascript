@@ -12,6 +12,7 @@ export default class Cena{
     this.idAnim = null;
     this.assets = assets;
     this.mapa = null;
+    this.spawn = 4;
      }
     desenhar() {
     this.ctx.fillStyle = "lightblue";
@@ -40,8 +41,14 @@ export default class Cena{
         for (const sprite of this.sprites) {
             sprite.passo(dt);
         }
+        this.spawn -= dt;
+        if(this.spawn<=0){
+        this.quandoSpawn();
+        this.spawn = 4;  
+        }
       }
      }
+     
      quadro(t){
             this.t0 = this.t0 ?? t;
             this.dt = (t - this.t0)/1000 ;
@@ -75,6 +82,11 @@ export default class Cena{
                }
          }
         }
+       }
+       quandoSpawn()
+       {
+
+         
        }
        quandoColidir(a,b){
           if(!this.aRemover.includes(a)){
