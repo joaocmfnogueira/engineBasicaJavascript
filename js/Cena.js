@@ -1,7 +1,7 @@
 export default class Cena{
     /* É responsável por desenhar elementos
     na tela e animação
-    */
+    */ 
     constructor(canvas, assets = null) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -18,7 +18,7 @@ export default class Cena{
     this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height); 
 
     this.mapa?.desenhar(this.ctx);
-
+    
     if(this.assets.acabou()){
     for (let s = 0; s < this.sprites.length; s++) {
         const sprite = this.sprites[s];
@@ -28,6 +28,7 @@ export default class Cena{
    }
     this.ctx.fillStyle = "yellow";
     this.ctx.fillText(this.assets?.progresso(), 10, 20);
+
      }
      adicionar(sprite){
         sprite.cena = this;
@@ -81,7 +82,9 @@ export default class Cena{
           }
           if(!this.aRemover.includes(b)){
             this.aRemover.push(b);
-          }
+          }         
+         this.assets.carregaAudio("moeda","assets/coin.wav");
+         this.assets.play("moeda");
         }
         removerSprites(){
            for (const alvo of this.aRemover) {

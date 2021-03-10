@@ -26,8 +26,8 @@ export default class Sprite {
             );
     }
     passo(dt){
-        this.x = this.x + this.vx*dt
-        this.y = this.y + this.vy*dt
+        this.x = this.x + this.vx*dt;
+        this.y = this.y + this.vy*dt;
         this.mx = Math.floor(this.x / this.cena.mapa.SIZE);
         this.my = Math.floor(this.y / this.cena.mapa.SIZE);
     }

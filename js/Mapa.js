@@ -17,7 +17,7 @@ constructor(linhas = 8, colunas = 12, tamanho = 32){
         for (let c = 0; c < this.COLUNAS; c++) {
            switch (this.tiles[l][c]){
             case 1:
-            ctx.fillStyle = "grey";           
+            ctx.fillStyle = "grey" ;
             ctx.linesWidth = 1;
             ctx.strokeStyle = "black";            
             break;
