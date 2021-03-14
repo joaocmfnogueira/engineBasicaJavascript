@@ -11,7 +11,6 @@ export default class AssetManager{
     const img1 = new Image() ;
     const that = this;
     img1.addEventListener("load", ()=> {
-     console.log(`Imagem ${that.carregadas}/${that.aCarregar} carregada!`);
      that.carregadas++;
     });
     img1.src = source;
@@ -22,7 +21,6 @@ export default class AssetManager{
    carregaAudio(chave, source){
     const audio = new Audio();
     audio.addEventListener("loadeddata", () => {
-     console.log(`Audio ${this.carregadas}/${this.aCarregar} carregada!`);
      this.carregadas++;
     });
     audio.src = source;

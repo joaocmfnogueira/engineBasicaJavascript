@@ -1,9 +1,10 @@
 export default class Mapa {
-constructor(linhas = 8, colunas = 12, tamanho = 32){
+constructor(linhas = 8, colunas = 12, tamanho = 32, assets = null){
   this.LINHAS = linhas;
   this.COLUNAS = colunas;
   this.SIZE = tamanho;
   this.tiles = [];
+  this.assets = assets;
     for (let l = 0; l < this.LINHAS; l++) {
         this.tiles[l] = [];
         for (let c = 0; c < this.COLUNAS; c++) {
@@ -19,7 +20,8 @@ constructor(linhas = 8, colunas = 12, tamanho = 32){
             case 1:
             ctx.fillStyle = "grey" ;
             ctx.linesWidth = 1;
-            ctx.strokeStyle = "black";            
+            ctx.strokeStyle = "black";  
+            ctx.drawImage(this.assets.img("parede"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);   
             break;
             case 2:
             ctx.fillStyle = "red";
@@ -30,9 +32,16 @@ constructor(linhas = 8, colunas = 12, tamanho = 32){
             ctx.fillStyle = "black";
             ctx.linesWidth = 1;
             ctx.strokeStyle = "grey";
+            ctx.drawImage(this.assets.img("piso"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
          }    
-         ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
-         ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+         /*
+         if(this.assets == null)
+         {
+          ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+          ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+         }
+        */
+        
        }
      }
    }

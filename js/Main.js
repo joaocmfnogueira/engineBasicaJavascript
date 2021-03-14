@@ -12,8 +12,9 @@ assets.carregaImagem("garota","assets/garota.png");
 assets.carregaImagem("esqueleto","assets/skelly.png");
 assets.carregaImagem("orc","assets/orc.png");
 assets.carregaAudio("moeda","assets/coin.wav");
+assets.carregaImagem("piso","assets/piso.png");  
 assets.carregaAudio("boom","assets/boom.wav");
-   
+assets.carregaImagem("parede","assets/parede.png"); 
     
 
 const canvas = document.querySelector("canvas");
@@ -21,7 +22,7 @@ canvas.width = 21*32;
 canvas.height = 20*32;
 const cena1 = new Cena(canvas,assets);
 
-const mapa1 = new Mapa(20, 21, 32);
+const mapa1 = new Mapa(20, 21, 32,assets);
 mapa1.carregaMapa(modeloMapa1);
 cena1.configuraMapa(mapa1);
 cena1.quandoSpawn = function() {
