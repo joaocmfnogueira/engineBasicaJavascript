@@ -12,7 +12,7 @@ export default class Cena{
     this.idAnim = null;
     this.assets = assets;
     this.mapa = null;
-    this.spawn = 4;
+    this.spawn = 1;
      }
     desenhar() {
     this.ctx.fillStyle = "lightblue";
