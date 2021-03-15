@@ -46,11 +46,11 @@ cena1.quandoSpawn = function() {
      const nvx = Math.floor(80*Math.random()) - 40;
      const nvy = Math.floor(80*Math.random()) - 40;
 
-     const en1 = new Sprite({vx: nvx,vy: nvy,x: nx*this.mapa.SIZE + this.mapa.SIZE/2,y: ny*this.mapa.SIZE + this.mapa.SIZE/2, color:"red"});
+     const en1 = new Sprite({vx: nvx,vy: nvy,x: nx*this.mapa.SIZE + this.mapa.SIZE/2,y: ny*this.mapa.SIZE + this.mapa.SIZE/2, color:"red",controlar: perseguePC});
      this.adicionar(en1);
      en1.passo(0);
 }
-const pc = new Sprite();
+const pc = new Sprite({x:300});
 pc.controlar = function (dt) {
 if(input.comandos.get("MOVE_ESQUERDA")){
 this.vx = -50;
@@ -70,6 +70,16 @@ else{
             }
 };
 cena1.adicionar(pc);
+
+function perseguePC(dt) {
+    this.vx = 25*Math.sign(pc.x - this.x);
+    this.vy = 25*Math.sign(pc.y - this.y);
+};
+const en2 = new Sprite({x:100 , controlar: perseguePC} );
+
+cena1.adicionar(en2);
+
+
 
 cena1.iniciar();
 
