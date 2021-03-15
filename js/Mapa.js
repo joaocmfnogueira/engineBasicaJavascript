@@ -18,9 +18,11 @@ constructor(linhas = 8, colunas = 12, tamanho = 32, assets = null){
         for (let c = 0; c < this.COLUNAS; c++) {
            switch (this.tiles[l][c]){
             case 1:
+              /*
             ctx.fillStyle = "grey" ;
             ctx.linesWidth = 1;
             ctx.strokeStyle = "black";  
+            */
             ctx.drawImage(this.assets.img("parede"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);   
             break;
             case 2:
@@ -29,17 +31,16 @@ constructor(linhas = 8, colunas = 12, tamanho = 32, assets = null){
             ctx.strokeStyle = "orange";
             break;
             default:
+              /*
             ctx.fillStyle = "black";
             ctx.linesWidth = 1;
             ctx.strokeStyle = "grey";
+            */
             ctx.drawImage(this.assets.img("piso"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
          }    
          /*
-         if(this.assets == null)
-         {
           ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
           ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
-         }
         */
         
        }

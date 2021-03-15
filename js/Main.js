@@ -4,7 +4,9 @@ import Mapa from "./Mapa.js";
 import Mixer from "./Mixer.js";
 import Sprite from "./Sprite.js";
 import  modeloMapa1 from "../maps/mapa1.js";
+import InputManager from"./InputManager.js";
 
+const input = new InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
 
@@ -20,6 +22,13 @@ assets.carregaImagem("parede","assets/parede.png");
 const canvas = document.querySelector("canvas");
 canvas.width = 21*32;
 canvas.height = 20*32;
+
+input.configurarTeclado({
+"ArrowLeft" : "MOVE_ESQUERDA",
+"ArrowRight" : "MOVE_DIREITA",
+
+
+});
 const cena1 = new Cena(canvas,assets);
 
 const mapa1 = new Mapa(20, 21, 32,assets);
