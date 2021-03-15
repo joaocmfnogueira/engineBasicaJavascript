@@ -49,6 +49,19 @@ cena1.quandoSpawn = function() {
      this.adicionar(en1);
      en1.passo(0);
 }
+const pc = new Sprite();
+pc.controlar = function (dt) {
+if(input.comandos.get("MOVE_ESQUERDA")){
+this.vx = -50;
+}else if(input.comandos.get("MOVE_DIREITA")){
+    this.vx = +50;
+    }
+else{
+        this.vx = 0;
+    }
+};
+cena1.adicionar(pc);
+
 cena1.iniciar();
 
 document.addEventListener("keydown", (e) => {
