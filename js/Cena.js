@@ -2,18 +2,12 @@ export default class Cena{
     /* É responsável por desenhar elementos
     na tela e animação
     */ 
-    constructor(canvas, assets = null) {
+    constructor(canvas = null, assets = null) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext("2d");
-    this.sprites = [];
-    this.aRemover = [];
-    this.t0 = null;
-    this.dt = 0;
-    this.idAnim = null;
+    this.ctx = canvas?.getContext("2d");
     this.assets = assets;
-    this.mapa = null;
     this.game = null;
-    this.spawn = 1;
+    this.preparar();
      }
     desenhar() {
     this.ctx.fillStyle = "lightblue";
@@ -60,15 +54,19 @@ export default class Cena{
             this.checaColisao();
             this.removerSprites();
 
-            this.iniciar();
-            this.t0 = t;
+            if(this.rodando){
+            this.iniciar();          
+              };
+         this.t0 = t;
      }
      iniciar(){
+        this.rodando = true;
         this.idAnim = requestAnimationFrame(
             (t) => {this.quadro(t);}
             );
      }
      parar(){
+        this.rodando = false;
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
@@ -97,7 +95,7 @@ export default class Cena{
           if(!this.aRemover.includes(b)){
             this.aRemover.push(b);
           }         
-         this.assets.play("moeda");
+        
         }
         removerSprites(){
            for (const alvo of this.aRemover) {
@@ -111,6 +109,16 @@ export default class Cena{
         configuraMapa(mapa){
          this.mapa = mapa;
          this.mapa.cena = this;
+        }
+        preparar(){
+         this.sprites = [];
+         this.aRemover = [];
+         this.t0 = null;
+         this.dt = 0;
+         this.idAnim = null;
+         this.mapa = null;
+         this.rodando = true;
+         this.spawn = 1;
         }
       }
 
