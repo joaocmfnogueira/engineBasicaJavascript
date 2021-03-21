@@ -17,7 +17,8 @@ assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaImagem("piso","assets/piso.png");  
 assets.carregaAudio("boom","assets/boom.wav");
 assets.carregaImagem("parede","assets/parede.png"); 
-    
+assets.carregaImagem("portal","assets/portal.png");
+assets.carregaImagem("imagem_moeda","assets/imagem_moeda.png");
 
 const canvas = document.querySelector("canvas");
 canvas.width = 21*32;
