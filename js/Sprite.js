@@ -6,6 +6,7 @@ export default class Sprite {
         y=100, 
         w=20, 
         h=20, 
+        assets = null,
         color="white", 
         vx=0, 
         vy=0, 
@@ -20,6 +21,7 @@ export default class Sprite {
         this.h = h;
         this.color = color;
         this.cena = null;
+        this.assets = assets;
         this.mx = 0;
         this.my = 0;
         this.controlar = controlar;
@@ -94,7 +96,7 @@ export default class Sprite {
                 this.x = tile.x - tile.w/2 - this.w/2 - 1;
             }
           }
-        }
+        }       
     }
     aplicaRestricoesEsquerda(pmx,pmy){
         if(this.vx<0){

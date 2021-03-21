@@ -2,6 +2,7 @@ import Cena from "./Cena.js";
 import Mapa from "./Mapa.js";
 import Sprite from "./Sprite.js";
 import  modeloMapa1 from "../maps/mapa1.js";
+import  modeloMapa2 from "../maps/mapa2.js";
 
 
 export default class CenaJogo extends Cena{
@@ -23,8 +24,10 @@ export default class CenaJogo extends Cena{
     preparar(){
         super.preparar();
         const mapa1 = new Mapa(20, 21, 32,this.assets);
+        const mapa2 = new Mapa(20, 21, 32,this.assets);
         mapa1.carregaMapa(modeloMapa1);
-        this.configuraMapa(mapa1);
+        mapa2.carregaMapa(modeloMapa2);
+        this.configuraMapa(mapa1);       
         this.quandoSpawn = function() {
              let ny = Math.floor(this.mapa.LINHAS*Math.random());
              let nx = Math.floor(this.mapa.COLUNAS*Math.random());
@@ -41,7 +44,7 @@ export default class CenaJogo extends Cena{
              en1.passo(0);
         }
         const pc = new Sprite({x:300,tags:["pc"]});
-        const cena = this;
+        const cena = this;   
         pc.controlar = function (dt) {
         if(cena.input.comandos.get("MOVE_ESQUERDA")){
         this.vx = -50;
@@ -60,8 +63,7 @@ export default class CenaJogo extends Cena{
                         this.vy = 0;
                     }
         };
-        this.adicionar(pc);
-        
+        this.adicionar(pc);   
         function perseguePC(dt) {
             this.vx = 25*Math.sign(pc.x - this.x);
             this.vy = 25*Math.sign(pc.y - this.y);

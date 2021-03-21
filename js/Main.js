@@ -50,12 +50,6 @@ switch (e.key) {
         break;
     case "S":
         game.parar();   
-        break;
-    case "c":
-       assets.play("moeda");   
-        break;   
-     case "b":
-       assets.play("boom");   
-        break;  
+        break;      
 }
 } );

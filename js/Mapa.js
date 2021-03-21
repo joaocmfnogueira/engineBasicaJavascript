@@ -26,11 +26,15 @@ constructor(linhas = 8, colunas = 12, tamanho = 32, assets = null){
             ctx.drawImage(this.assets.img("parede"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);   
             break;
             case 2:
+              /*
             ctx.fillStyle = "red";
             ctx.linesWidth = 1;
             ctx.strokeStyle = "orange";
             break;
-            default:
+            */
+            ctx.drawImage(this.assets.img("portal"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+            break;
+            default:        
               /*
             ctx.fillStyle = "black";
             ctx.linesWidth = 1;
