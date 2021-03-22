@@ -11,6 +11,7 @@ export default class Game{
    adicionarCena(chave, cena){
     this.cenas.set(chave, cena);
     cena.game = this;
+    console.log("cena");
     cena.canvas = this.canvas;
     cena.assets = this.assets;
     cena.ctx = this.ctx;

@@ -9,7 +9,11 @@ export default class CenaFim extends Cena{
         this.ctx.textAlign = "center";
         this.ctx.fillText("GAME OVER",this.canvas.width/2,
         this.canvas.height/2 );  
+        this.ctx.fillText("Quantidade de moedas :",this.canvas.width/2,this.canvas.height/2 + 20);
+        this.ctx.fillStyle = "yellow";
+        this.ctx.fillText(this.moedas,this.canvas.width/2 + 110,this.canvas.height/2 + 20);
         if(this.assets.acabou()){   
+            this.ctx.fillStyle = "red";
         this.ctx.fillText("Aperte espaço para jogar novamente",this.canvas.width/2,
         this.canvas.height/2 + 40 );  
        }

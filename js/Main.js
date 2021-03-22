@@ -15,7 +15,7 @@ assets.carregaImagem("esqueleto","assets/skelly.png");
 assets.carregaImagem("orc","assets/orc.png");
 assets.carregaAudio("moeda","assets/coin.wav");
 assets.carregaImagem("piso","assets/piso.png");  
-assets.carregaAudio("boom","assets/boom.wav");
+assets.carregaAudio("morte","assets/morte.wav");
 assets.carregaImagem("parede","assets/parede.png"); 
 assets.carregaImagem("portal","assets/portal.png");
 assets.carregaImagem("imagem_moeda","assets/imagem_moeda.png");
@@ -41,6 +41,9 @@ game.adicionarCena("carregando",cena0);
 game.adicionarCena("jogo",cena1);
 game.adicionarCena("fim",cena2);
 
+cena0.preparar();
+cena1.preparar();
+cena2.preparar();
 game.iniciar();
 
 document.addEventListener("keydown", (e) => {
@@ -50,6 +53,6 @@ switch (e.key) {
         break;
     case "S":
         game.parar();   
-        break;      
+        break;     
 }
 } );
