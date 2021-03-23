@@ -32,7 +32,7 @@ export default class Sprite {
     this.img_moeda = img_moeda;
     this.img_portal = img_portal;
     this.controlar = controlar;
-    this.pose = 0;
+    this.pose = 10;
     this.quadro = 0;
     this.tags = new Set();
     tags.forEach((tags) => {

@@ -6,38 +6,50 @@ import modeloMapa2 from "../maps/mapa2.js";
 
 export default class CenaJogo extends Cena {
   quandoColidir(a, b) {
-    if((a.tags.has("pc") && b.tags.has("moeda"))||(b.tags.has("pc") && a.tags.has("moeda"))){
-      if(a.tags.has("moeda")){
+    if (
+      (a.tags.has("pc") && b.tags.has("moeda")) ||
+      (b.tags.has("pc") && a.tags.has("moeda"))
+    ) {
+      if (a.tags.has("moeda")) {
         this.aRemover.push(a);
         this.assets.play("moeda");
-      }
-      else
-      this.aRemover.push(b);
+      } else this.aRemover.push(b);
       this.assets.play("moeda");
+    } else if (
+      (a.tags.has("enemy") && b.tags.has("moeda")) ||
+      (b.tags.has("enemy") && a.tags.has("moeda"))
+    ) {
+    } else if (a.tags.has("moeda") && b.tags.has("moeda")) {
+    } else if (
+      (a.tags.has("pc") && b.tags.has("portal")) ||
+      (b.tags.has("pc") && a.tags.has("portal"))
+    ) {
+      const mapa2 = new Mapa(20, 21, 32, this.assets);
+      mapa2.carregaMapa(modeloMapa2);
+      this.configuraMapa(mapa2);
+      if (a.tags.has("portal")) {
+        this.aRemover.push(a);
+      } else {
+        this.aRemover.push(b);
+      }
+    } else {
+      if (!this.aRemover.includes(a)) {
+        this.aRemover.push(a);
+      }
+      if (!this.aRemover.includes(b)) {
+        this.aRemover.push(b);
+      }
+      if (
+        (a.tags.has("pc") && b.tags.has("enemy")) ||
+        (b.tags.has("pc") && a.tags.has("enemy"))
+      ) {
+        this.rodando = false;
+        this.game.selecionaCena("fim");
+      }
+      this.assets.play("morte");
     }
-    else
-    if((a.tags.has("enemy") && b.tags.has("moeda"))||(b.tags.has("enemy") && a.tags.has("moeda"))){
-     
-    }
-    else
-    if(a.tags.has("moeda") && b.tags.has("moeda")){
-
-    }
-    else{
-    if (!this.aRemover.includes(a)) {
-      this.aRemover.push(a);
-    }
-    if (!this.aRemover.includes(b)) {
-      this.aRemover.push(b);
-    }
-    if ((a.tags.has("pc") && b.tags.has("enemy"))||(b.tags.has("pc") && a.tags.has("enemy"))) {
-      this.rodando = false;
-      this.game.selecionaCena("fim");
-    }
-    this.assets.play("morte");
   }
-}
-  
+
   preparar() {
     super.preparar();
     const mapa1 = new Mapa(20, 21, 32, this.assets);
@@ -55,7 +67,7 @@ export default class CenaJogo extends Cena {
       while (this.mapa.tiles[by][bx] != 0) {
         by = Math.floor(this.mapa.LINHAS * Math.random());
         bx = Math.floor(this.mapa.COLUNAS * Math.random());
-      }    
+      }
       const nvx = Math.floor(80 * Math.random()) - 40;
       const nvy = Math.floor(80 * Math.random()) - 40;
       const en1 = new Sprite({
@@ -68,18 +80,17 @@ export default class CenaJogo extends Cena {
         tags: ["enemy"],
         img: this.assets.img("orc"),
       });
-      
+
       const moeda = new Sprite({
         tags: ["moeda"],
         img_moeda: this.game.assets.img("imagem_moeda"),
         x: bx * this.mapa.SIZE + this.mapa.SIZE / 2,
-        y: by * this.mapa.SIZE + this.mapa.SIZE / 2
-       });
-       
+        y: by * this.mapa.SIZE + this.mapa.SIZE / 2,
+      });
+
       this.adicionar(en1);
       this.adicionar(moeda);
       en1.passo(0);
-    
     };
     console.log(this.game);
     const pc = new Sprite({
@@ -88,13 +99,13 @@ export default class CenaJogo extends Cena {
       img: this.game.assets.img("garota"),
     });
     const portal = new Sprite({
-      x: 600,
-      y:50,
-      color:"purple",
+      x: 350,
+      y: 50,
+      color: "purple",
       tags: ["portal"],
-      img_portal: this.game.assets.img("portal")
+      img_portal: this.game.assets.img("portal"),
     });
-    
+
     const cena = this;
     pc.controlar = function (dt) {
       if (cena.input.comandos.get("MOVE_ESQUERDA")) {
@@ -121,21 +132,19 @@ export default class CenaJogo extends Cena {
     function perseguePC(dt) {
       this.vx = 25 * Math.sign(pc.x - this.x);
       this.vy = 25 * Math.sign(pc.y - this.y);
-      if(this.vx>0 && this.vx!=0){
+
+      if (this.vx > 0 && this.vx > this.vy) {
         this.pose = 11;
       }
-      else
-     if(this.vx<0 && this.vx!=0){
-       this.pose = 9;
-     }
-     else
-     if(this.vy>=0){
-       this.pose = 10;
-     }
-     else
-     if(this.vy<=0){
-       this.pose = 8;
-     }
+      if (this.vx < 0) {
+        this.pose = 9;
+      }
+      if (this.vy > 0) {
+        this.pose = 10;
+      }
+      if (this.vy < 0) {
+        this.pose = 8;
+      }
     }
   }
 }
