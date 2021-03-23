@@ -71,7 +71,7 @@ export default class CenaJogo extends Cena {
       
       const moeda = new Sprite({
         tags: ["moeda"],
-        img1: this.game.assets.img("imagem_moeda"),
+        img_moeda: this.game.assets.img("imagem_moeda"),
         x: bx * this.mapa.SIZE + this.mapa.SIZE / 2,
         y: by * this.mapa.SIZE + this.mapa.SIZE / 2
        });
@@ -86,6 +86,13 @@ export default class CenaJogo extends Cena {
       x: 300,
       tags: ["pc"],
       img: this.game.assets.img("garota"),
+    });
+    const portal = new Sprite({
+      x: 600,
+      y:50,
+      color:"purple",
+      tags: ["portal"],
+      img_portal: this.game.assets.img("portal")
     });
     
     const cena = this;
@@ -110,7 +117,7 @@ export default class CenaJogo extends Cena {
       }
     };
     this.adicionar(pc);
-    
+    this.adicionar(portal);
     function perseguePC(dt) {
       this.vx = 25 * Math.sign(pc.x - this.x);
       this.vy = 25 * Math.sign(pc.y - this.y);

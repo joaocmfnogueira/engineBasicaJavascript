@@ -12,7 +12,8 @@ export default class Sprite {
     vx = 0,
     vy = 0,
     img = null,
-    img1 = null,
+    img_moeda = null,
+    img_portal = null,
     controlar = () => {},
     tags = [],
   } = {}) {
@@ -28,7 +29,8 @@ export default class Sprite {
     this.mx = 0;
     this.my = 0;
     this.img = img;
-    this.img1 = img1;
+    this.img_moeda = img_moeda;
+    this.img_portal = img_portal;
     this.controlar = controlar;
     this.pose = 0;
     this.quadro = 0;
@@ -86,9 +88,9 @@ export default class Sprite {
         64
       );
     }
-    if (this.img1) {
+    if (this.img_moeda) {
       ctx.drawImage(
-        this.img1,
+        this.img_moeda,
         //sx, sy, sw, sh
         0,
         0,
@@ -97,6 +99,21 @@ export default class Sprite {
         //dx, dy, dw, dh
         this.x - 15,
         this.y - 15,
+        48,
+        48
+      );
+    }
+    if (this.img_portal) {
+      ctx.drawImage(
+        this.img_portal,
+        //sx, sy, sw, sh
+        0,
+        0,
+        240,
+        240,
+        //dx, dy, dw, dh
+        this.x - 20,
+        this.y - 20,
         48,
         48
       );
