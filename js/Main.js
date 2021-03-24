@@ -40,7 +40,7 @@ const cena2 = new CenaFim();
 game.adicionarCena("carregando",cena0);
 game.adicionarCena("jogo",cena1);
 game.adicionarCena("fim",cena2);
-
+cena2.moedas = cena1.moedas
 cena0.preparar();
 cena1.preparar();
 cena2.preparar();

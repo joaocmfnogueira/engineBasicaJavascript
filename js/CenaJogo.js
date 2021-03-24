@@ -13,8 +13,10 @@ export default class CenaJogo extends Cena {
       if (a.tags.has("moeda")) {
         this.aRemover.push(a);
         this.assets.play("moeda");
-      } else this.aRemover.push(b);
-      this.assets.play("moeda");
+        this.moedas ++;
+        this.game.moedas++;
+      console.log(this.moedas);
+      } 
     } else if (
       (a.tags.has("enemy") && b.tags.has("moeda")) ||
       (b.tags.has("enemy") && a.tags.has("moeda"))
@@ -52,6 +54,7 @@ export default class CenaJogo extends Cena {
 
   preparar() {
     super.preparar();
+    this.game.moedas = 0;
     const mapa1 = new Mapa(20, 21, 32, this.assets);
     mapa1.carregaMapa(modeloMapa1);
     this.configuraMapa(mapa1);
@@ -109,19 +112,19 @@ export default class CenaJogo extends Cena {
     const cena = this;
     pc.controlar = function (dt) {
       if (cena.input.comandos.get("MOVE_ESQUERDA")) {
-        this.vx = -50;
+        this.vx = -100;
         pc.pose = 9;
       } else if (cena.input.comandos.get("MOVE_DIREITA")) {
-        this.vx = +50;
+        this.vx = +100;
         pc.pose = 11;
       } else {
         this.vx = 0;
       }
       if (cena.input.comandos.get("MOVE_CIMA")) {
-        this.vy = -50;
+        this.vy = -100;
         pc.pose = 8;
       } else if (cena.input.comandos.get("MOVE_BAIXO")) {
-        this.vy = +50;
+        this.vy = +100;
         pc.pose = 10;
       } else {
         this.vy = 0;
@@ -130,21 +133,14 @@ export default class CenaJogo extends Cena {
     this.adicionar(pc);
     this.adicionar(portal);
     function perseguePC(dt) {
-      this.vx = 25 * Math.sign(pc.x - this.x);
-      this.vy = 25 * Math.sign(pc.y - this.y);
+      this.vx = Math.min(Math.abs(pc.x - this.x),25) * Math.sign(pc.x - this.x);
+      this.vy = Math.min(Math.abs(pc.y - this.y),25) * Math.sign(pc.y - this.y);
 
-      if (this.vx > 0 && this.vx > this.vy) {
-        this.pose = 11;
-      }
-      if (this.vx < 0) {
+      if (this.vx < 0 ){
         this.pose = 9;
-      }
-      if (this.vy > 0) {
-        this.pose = 10;
-      }
-      if (this.vy < 0) {
-        this.pose = 8;
-      }
+      } else if (this.vx > 0 ){
+        this.pose = 11;
+      } 
     }
   }
 }

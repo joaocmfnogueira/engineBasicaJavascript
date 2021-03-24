@@ -2,12 +2,13 @@ export default class Cena {
   /* É responsável por desenhar elementos
     na tela e animação
     */
-  constructor(canvas = null, assets = null) {
+  constructor(canvas = null, assets = null, moedas = 0) {
     this.canvas = canvas;
     this.ctx = canvas?.getContext("2d");
     this.assets = assets;
     this.game = null;
-    this.moedas = 0;
+    this.moedas = moedas;
+    
     ///this.preparar();
   }
   desenhar() {
@@ -86,14 +87,14 @@ export default class Cena {
   }
   quandoSpawn() {}
   quandoColidir(a, b) {
+    
     if (!this.aRemover.includes(a)) {
       this.aRemover.push(a);
     }
     if (!this.aRemover.includes(b)) {
       this.aRemover.push(b);
-    }   
-    this.moedas++;
-    
+    }    
+
   }
 
   removerSprites() {

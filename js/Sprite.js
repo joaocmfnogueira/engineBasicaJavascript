@@ -11,6 +11,7 @@ export default class Sprite {
     color = "white",
     vx = 0,
     vy = 0,
+    moedas = 0,
     img = null,
     img_moeda = null,
     img_portal = null,
@@ -22,6 +23,7 @@ export default class Sprite {
     this.vx = vx;
     this.vy = vy;
     this.w = w;
+    this.moedas = moedas;
     this.h = h;
     this.color = color;
     this.cena = null;
