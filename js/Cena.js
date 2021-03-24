@@ -7,8 +7,6 @@ export default class Cena {
     this.ctx = canvas?.getContext("2d");
     this.assets = assets;
     this.game = null;
-    this.moedas = moedas;
-    
     ///this.preparar();
   }
   desenhar() {

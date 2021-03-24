@@ -22,7 +22,7 @@ for (let c = 0; c < this.CANAIS; c++) {
     canal.audio.src = audio.src;
     canal.audio.play();
     canal.fim = agora + audio.duration * 1000;
-    console.log(`play canal ${c} ${canal.fim}`);
+    //console.log(`play canal ${c} ${canal.fim}`);
     break;
     }
   }

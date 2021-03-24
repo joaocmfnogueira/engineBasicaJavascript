@@ -13,15 +13,18 @@ export default class CenaJogo extends Cena {
       if (a.tags.has("moeda")) {
         this.aRemover.push(a);
         this.assets.play("moeda");
-        this.moedas ++;
         this.game.moedas++;
-      console.log(this.moedas);
       } 
     } else if (
       (a.tags.has("enemy") && b.tags.has("moeda")) ||
       (b.tags.has("enemy") && a.tags.has("moeda"))
     ) {
-    } else if (a.tags.has("moeda") && b.tags.has("moeda")) {
+    }else if (
+        (a.tags.has("enemy") && b.tags.has("portal")) ||
+        (b.tags.has("enemy") && a.tags.has("portal"))
+      ) {
+      }
+     else if (a.tags.has("moeda") && b.tags.has("moeda")) {
     } else if (
       (a.tags.has("pc") && b.tags.has("portal")) ||
       (b.tags.has("pc") && a.tags.has("portal"))
@@ -83,7 +86,6 @@ export default class CenaJogo extends Cena {
         tags: ["enemy"],
         img: this.assets.img("orc"),
       });
-
       const moeda = new Sprite({
         tags: ["moeda"],
         img_moeda: this.game.assets.img("imagem_moeda"),
@@ -95,14 +97,13 @@ export default class CenaJogo extends Cena {
       this.adicionar(moeda);
       en1.passo(0);
     };
-    console.log(this.game);
     const pc = new Sprite({
       x: 300,
       tags: ["pc"],
       img: this.game.assets.img("garota"),
     });
     const portal = new Sprite({
-      x: 350,
+      x: 340,
       y: 50,
       color: "purple",
       tags: ["portal"],
